@@ -21,24 +21,12 @@ if git diff-index --quiet HEAD --; then
   exit 0
 fi
 
-# check to see if the script/auto-push branch exists upstream
-git ls-remote --heads | grep "script/auto-push$" > /dev/null
-
-# create the auto push branch
-auto_branch_exists="true"
-if [[ "$?" == "1" ]]; then
-  # doesn't exist, create it
-  git branch "script/auto-push"
-
-  # set var to set upstream later
-  auto_branch_exists="false"
-fi
 
 # get temporary auto-push branch name to merge with the current auto-push branch
 tmp_auto_branch="script/auto-push-$(date +"%Y%m%d_%H%M%S")"
 
 # stash current changes
-git stash --message "savepoint_1"
+git stash push --message "savepoint_1"
 
 # create a second reference to the same stashg
 git stash apply
@@ -47,20 +35,38 @@ git stash push --message "savepoint_2"
 # create branch based on stashed changes (switches to that branch automatically)
 git stash branch "$tmp_auto_branch"
 
+# create a "check" so we don't accidentally write over an important branch
+cur_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+# exit if in a blacklisted set
+[[ "$cur_branch" == "master" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+[[ "$cur_branch" == "main" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+[[ "$cur_branch" == "dev" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+[[ "$cur_branch" == "develop" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+[[ "$cur_branch" == "prod" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+[[ "$cur_branch" == "production" ]] && { echo "Cannot edit protected branch: $cur_branch" | tee -a /tmp/auto_git.log; exit 1; }
+
 # add all of the changes
 git add --all
 
 # commit changes
 git commit -m "Automatic commit"
 
-# checkout the base script/auto-push branch
-git checkout script/auto-push
+# check to see if the script/auto-push branch exists upstream
+git ls-remote --heads | grep "script/auto-push$" > /dev/null
 
-# set script/auto-push upstream if it doesn't exist
-if [[ "$branch_exists" == "false" ]]; then
-  # doesn't exist, set upstream
+# create the auto push branch
+if [[ "$?" == "1" ]]; then
+  # doesn't exist, create it
+  git checkout -B "script/auto-push"
   git push --set-upstream origin script/auto-push
+else
+  git checkout "script/auto-push"
 fi
+
+# exit if not on the script/auto-push branch
+cur_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+[[ $cur_branch != "script/auto-push" ]] && { echo "Not in script/auto-push branch for some reason" | tee -a /tmp/auto_git.log; exit 1; }
 
 # merge the tmp auto-push into the real auto-push
 #   uses a "theirs" strategy so everthing will get
