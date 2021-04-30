@@ -9,6 +9,8 @@ cd ~/Downloads/
 mv *.jpg ~/Pictures/Downloads/
 mv *.png ~/Pictures/Downloads/
 mv *.gif ~/Pictures/Downloads/
+mv *.jpeg ~/Pictures/Downloads/
+mv *.JPG ~/Pictures/Downloads/
 
 # Move any pdfs to the PDFs folder in Documents
 mv *.pdf ~/Documents/PDFs/
