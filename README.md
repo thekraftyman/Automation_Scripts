@@ -7,6 +7,7 @@ This is a repo containing some automation scripts I use regularly
 |:-------------------:|:-------------------------------------------------------------------------:|
 | downloads_mover.sh  | Move various files from downloads folder for ease of management           |
 | downloads_zipper.sh | Zips up any dirs in ~/Downloads and removes the old folder, saving space. |
+| auto_git_push.sh    | Pushes any saved changes to a new branch, preserving current state        |
 
 ## PC Scripts
 
