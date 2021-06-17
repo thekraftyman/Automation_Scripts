@@ -2,17 +2,22 @@
 
 This is a repo containing some automation scripts I use regularly
 
-## Mac Scripts
-|     Script Name     |                                    Use                                    |
-|:-------------------:|:-------------------------------------------------------------------------:|
-| downloads_mover.sh  | Move various files from downloads folder for ease of management           |
-| downloads_zipper.sh | Zips up any dirs in ~/Downloads and removes the old folder, saving space. |
+## Mac/Linux Scripts
+|        Script Name            |                                    Use                                                |
+|:-----------------------------:|:-------------------------------------------------------------------------------------:|
+| Unix-like/downloads_mover.sh  | Move various files from downloads folder for ease of management                       |
+| Unix-like/downloads_zipper.sh | Zips up any dirs in ~/Downloads and removes the old folder, saving space.             |
+| Unix-like/auto_git_push.sh    | Automatically backs up a specified git repo with a separate branch for backup reasons |
 
-## PC Scripts
+## Windows Scripts
 
 None
 
-## Linux Scripts
+## Mac-specific Scripts
+
+None
+
+## Linux-specific Scripts
 
 None
 
