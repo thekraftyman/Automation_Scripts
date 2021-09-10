@@ -13,25 +13,25 @@ mv *.jpeg ~/Pictures/Downloads/
 mv *.JPG ~/Pictures/Downloads/
 
 # Move any pdfs to the PDFs folder in Documents
-mv *.pdf ~/Documents/PDFs/
+mv *.pdf ~/Documents/pdfs/
 
 # Move any word files to the Word_Files folder in Documents
-mv *.doc ~/Documents/Word_Files/
-mv *.docx ~/Documents/Word_Files/
+mv *.doc ~/Documents/word_files/
+mv *.docx ~/Documents/word_files/
 
 # Move any excel files to the Excel_Files folder in Documents
-mv *.xls ~/Documents/Excel_Files/
+mv *.xls ~/Documents/excel_files/
 
 # Move any csvs to the CSVs folder in Documents
-mv *.csv ~/Documents/CSVs/
+mv *.csv ~/Documents/csvs/
 
 # Move any databases
 mv *.sql ~/Documents/form_and_database_backups/
 
 # Move any virtual machine apps or OS images
 mv *.ova ~/Documents/virtual_machines/
-mv *.iso ~/Document/OS_Images/
-mv *.img ~/Document/OS_Images/
+mv *.iso ~/Document/os_images/
+mv *.img ~/Document/os_images/
 
 # Move any Photoshop files
-mv *.psd ~/Documents/Photoshop/
+mv *.psd ~/Documents/photoshop/
