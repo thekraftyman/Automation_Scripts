@@ -21,6 +21,7 @@ mv *.docx ~/Documents/word_files/
 
 # Move any excel files to the Excel_Files folder in Documents
 mv *.xls ~/Documents/excel_files/
+mv *.xlsx ~/Documents/excel_files/
 
 # Move any csvs to the CSVs folder in Documents
 mv *.csv ~/Documents/csvs/
@@ -35,3 +36,6 @@ mv *.img ~/Document/os_images/
 
 # Move any Photoshop files
 mv *.psd ~/Documents/photoshop/
+
+# Move program installers
+mv *.dmg ~/Documents/program_installers/
